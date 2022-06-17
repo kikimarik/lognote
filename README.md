@@ -1,13 +1,12 @@
-#Lognote - standard PHP library for logging
-***
-##Features
+# Lognote - standard PHP library for logging
+## Features
 ***
 - Object-oriented design (without static methods etc.)
 - Compatible with PHP 7.1 and later, including PHP 8.1
 - Support for the `json` format
 - Ability to write log into the file or print to console output
 
-##Why you might need it
+## Why you might need it
 ***
 The library helps PHP developers log their application events at different levels. At the moment, 3 levels are implemented: errors, warnings and info. In the future, it is planned to add a debug level for comfortable debugging of the application in the dev environment.
 
@@ -38,14 +37,14 @@ $log->sendInfo(new MessageLogLine("End script info"));
  */
 ```
 
-##License
+## License
 ***
 This software is distributed under the LGPL MIT license.
 
-##Installation
+## Installation
 ***
 Coming soon...
 
-##Tests
+## Tests
 ***
 Coming soon...
