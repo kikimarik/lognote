@@ -8,8 +8,6 @@ use kikimarik\lognote\level\ErrorLogLevel;
 
 final class MessageLogLine implements LogLine
 {
-    private array $fields;
-
     private string $date;
     private string $message;
     private LogLevel $level;
