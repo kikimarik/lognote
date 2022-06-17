@@ -1,0 +1,22 @@
+{
+  "name": "kikimarik/lognote",
+  "type": "library",
+  "description": "Composer package for logs",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "kikimarik\\lognote\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "Sergey Sorokin",
+      "email": "kikimarik@inbox.ru",
+      "role": "developer"
+    }
+  ]
+}
