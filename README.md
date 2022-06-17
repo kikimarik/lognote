@@ -10,7 +10,7 @@
 ***
 The library helps PHP developers to log their application events at different levels. 4 levels have been implemented: errors, warnings, info and debug.
 
-"Lognote" has a nice object-oriented design and it is going to please you with its simplicity. When testing a class that depends on that library component, it will be very easy to replace it with a fake class.
+"Lognote" has a nice object-oriented design and it is going to please you with its simplicity. Before testing a class that depends on that library component, it is easy to replace that dependency with a fake class.
 
 ## A Simple Example
 ***
