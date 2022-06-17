@@ -6,11 +6,11 @@
 - Support for the `json` format
 - Ability to write log into the file or print to console output
 
-## Why you might need it
+## Why do you need it
 ***
-The library helps PHP developers log their application events at different levels. At the moment, 3 levels are implemented: errors, warnings and info. In the future, it is planned to add a debug level for comfortable debugging of the application in the dev environment.
+The library helps PHP developers to log their application events at different levels. 4 levels have been implemented: errors, warnings, info and debug.
 
-"Lognote" has a nice object-oriented design and is sure to please you with its ease of use. When testing a class that has a dependency on a component of this library, it will be very easy to replace it with a fake class.
+"Lognote" has a nice object-oriented design and it is going to please you with its simplicity. When testing a class that depends on that library component, it will be very easy to replace it with a fake class.
 
 ## A Simple Example
 ***
