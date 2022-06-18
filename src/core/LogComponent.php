@@ -11,4 +11,6 @@ interface LogComponent
     public function sendWarning(LogLine $line): void;
 
     public function sendInfo(LogLine $line): void;
+
+    public function sendDebug(LogLine $line): void;
 }

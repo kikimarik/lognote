@@ -7,6 +7,7 @@ use kikimarik\lognote\core\LogLevel;
 use kikimarik\lognote\core\LogLine;
 use kikimarik\lognote\core\LogLineFormat;
 use kikimarik\lognote\core\LogTarget;
+use kikimarik\lognote\level\DebugLogLevel;
 use kikimarik\lognote\level\ErrorLogLevel;
 use kikimarik\lognote\level\InfoLogLevel;
 use kikimarik\lognote\level\WarningLogLevel;
@@ -41,5 +42,10 @@ final class Log implements LogComponent
     public function sendInfo(LogLine $line): void
     {
         $this->send($line, new InfoLogLevel());
+    }
+
+    public function sendDebug(LogLine $line): void
+    {
+        $this->send($line, new DebugLogLevel());
     }
 }
