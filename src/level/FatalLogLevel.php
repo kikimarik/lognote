@@ -4,14 +4,12 @@ namespace kikimarik\lognote\level;
 
 use kikimarik\lognote\core\LogLevel;
 
-final class InfoLogLevel implements LogLevel
+final class FatalLogLevel implements LogLevel
 {
-    /**
-     * @return string
-     */
+
     public function present(): string
     {
-        return "info";
+        return "fatal";
     }
 
     public function assertLessThenOrEqual(LogLevel $level): bool
@@ -21,6 +19,6 @@ final class InfoLogLevel implements LogLevel
 
     public function weigh(): int
     {
-        return 2;
+        return 6;
     }
 }

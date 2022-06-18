@@ -1,13 +1,18 @@
 <?php
 
 use kikimarik\lognote\format\JsonLogLineFormat;
+use kikimarik\lognote\level\InfoLogLevel;
 use kikimarik\lognote\Log;
 use kikimarik\lognote\MessageLogLine;
 use kikimarik\lognote\target\FileLogTarget;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-$log = new Log(new FileLogTarget(__DIR__ . "/example.log", true), new JsonLogLineFormat());
+$log = new Log(
+    new FileLogTarget(__DIR__ . "/example.log", true),
+    new JsonLogLineFormat(),
+    new InfoLogLevel()
+);
 $log->receiveInfo(new MessageLogLine("Start script info"));
 $log->receiveWarning(new MessageLogLine("I`m the warning example"));
 $log->receiveInfo(new MessageLogLine("End script info"));
