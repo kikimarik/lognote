@@ -23,29 +23,29 @@ final class Log implements LogComponent
         $this->format = $format;
     }
 
-    public function send(LogLine $line, LogLevel $level): void
+    public function receive(LogLine $line, LogLevel $level): void
     {
         $line->acceptLevel($level);
         $this->target->write($this->format->handle($line));
     }
 
-    public function sendError(LogLine $line): void
+    public function receiveError(LogLine $line): void
     {
-        $this->send($line, new ErrorLogLevel());
+        $this->receive($line, new ErrorLogLevel());
     }
 
-    public function sendWarning(LogLine $line): void
+    public function receiveWarning(LogLine $line): void
     {
-        $this->send($line, new WarningLogLevel());
+        $this->receive($line, new WarningLogLevel());
     }
 
-    public function sendInfo(LogLine $line): void
+    public function receiveInfo(LogLine $line): void
     {
-        $this->send($line, new InfoLogLevel());
+        $this->receive($line, new InfoLogLevel());
     }
 
-    public function sendDebug(LogLine $line): void
+    public function receiveDebug(LogLine $line): void
     {
-        $this->send($line, new DebugLogLevel());
+        $this->receive($line, new DebugLogLevel());
     }
 }

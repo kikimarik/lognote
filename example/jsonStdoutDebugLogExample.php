@@ -23,7 +23,7 @@ try {
     try {
         throwSomething("Page not found.", 404, $exception);
     } catch (Exception $exception) {
-        $errorLog->sendDebug(new ExceptionLogLine($exception));
+        $errorLog->receiveDebug(new ExceptionLogLine($exception));
     }
 }
 /**
