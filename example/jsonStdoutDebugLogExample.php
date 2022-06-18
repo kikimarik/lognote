@@ -2,12 +2,17 @@
 
 use kikimarik\lognote\ExceptionLogLine;
 use kikimarik\lognote\format\JsonLogLineFormat;
+use kikimarik\lognote\level\DebugLogLevel;
 use kikimarik\lognote\Log;
 use kikimarik\lognote\target\StdoutLogTarget;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-$errorLog = new Log(new StdoutLogTarget(), new JsonLogLineFormat());
+$errorLog = new Log(
+    new StdoutLogTarget(),
+    new JsonLogLineFormat(),
+    new DebugLogLevel()
+);
 
 function throwSomething(string $message, int $code = 0, $previous = null): void
 {

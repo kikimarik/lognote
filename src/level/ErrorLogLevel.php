@@ -13,4 +13,14 @@ final class ErrorLogLevel implements LogLevel
     {
         return "error";
     }
+
+    public function assertLessThenOrEqual(LogLevel $level): bool
+    {
+        return $this->weigh() <= $level->weigh();
+    }
+
+    public function weigh(): int
+    {
+        return 5;
+    }
 }

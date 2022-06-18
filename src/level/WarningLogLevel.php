@@ -2,7 +2,9 @@
 
 namespace kikimarik\lognote\level;
 
-final class WarningLogLevel implements \kikimarik\lognote\core\LogLevel
+use kikimarik\lognote\core\LogLevel;
+
+final class WarningLogLevel implements LogLevel
 {
     /**
      * @return string
@@ -10,5 +12,15 @@ final class WarningLogLevel implements \kikimarik\lognote\core\LogLevel
     public function present(): string
     {
         return "warning";
+    }
+
+    public function assertLessThenOrEqual(LogLevel $level): bool
+    {
+        return $this->weigh() <= $level->weigh();
+    }
+
+    public function weigh(): int
+    {
+        return 4;
     }
 }
