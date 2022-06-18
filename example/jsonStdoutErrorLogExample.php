@@ -16,7 +16,7 @@ $messages = [
 ];
 
 foreach ($messages as $message) {
-    $errorLog->sendError(new MessageLogLine($message));
+    $errorLog->receiveError(new MessageLogLine($message));
 }
 /**
  * Your console output will be like this:
