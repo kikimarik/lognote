@@ -1,22 +1,28 @@
 {
-  "name": "kikimarik/lognote",
-  "type": "library",
-  "description": "Composer package for logs",
-  "license": "MIT",
-  "require": {
-    "php": ">=7.4",
-    "ext-json": "*"
-  },
-  "autoload": {
-    "psr-4": {
-      "kikimarik\\lognote\\": "src"
-    }
-  },
-  "authors": [
-    {
-      "name": "Sergey Sorokin",
-      "email": "kikimarik@inbox.ru",
-      "role": "developer"
-    }
-  ]
+    "name": "kikimarik/lognote",
+    "type": "library",
+    "description": "Composer package for logs",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "codeception/codeception": "4.2.0",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "kikimarik\\lognote\\": "src",
+            "kikimarik\\lognote\\tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sergey Sorokin",
+            "email": "kikimarik@inbox.ru",
+            "role": "developer"
+        }
+    ]
 }
