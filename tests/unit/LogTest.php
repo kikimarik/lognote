@@ -3,60 +3,49 @@
 namespace kikimarik\lognote\tests\unit;
 
 use Codeception\Test\Unit;
-use kikimarik\lognote\core\LogComponent;
+use kikimarik\lognote\core\LogLevel;
 use kikimarik\lognote\core\LogLine;
-use kikimarik\lognote\core\LogTarget;
 use kikimarik\lognote\Log;
 use kikimarik\lognote\tests\unit\format\FakeLogLineFormat;
 use kikimarik\lognote\tests\unit\level\FakeLogLevel;
 use kikimarik\lognote\tests\unit\target\FakeLogTarget;
+use function GuzzleHttp\Promise\all;
 
 final class LogTest extends Unit
 {
-    private LogComponent $log;
-    /* @var LogTarget|FakeLogTarget */
-    private LogTarget $target;
-
-    public function __construct()
-    {
-        $this->target = new FakeLogTarget();
-        $this->log = new Log($this->target, new FakeLogLineFormat("|"));
-        parent::__construct();
-    }
+    private const LEVEL_NAME = "fake";
+    private const SEPARATOR = "|";
 
     /**
-     * @dataProvider testSendDataProvider
-     * @param LogLine[] $lines
+     * @dataProvider testReceiveDataProvider
+     * @param string $foo
+     * @param string $bar
+     * @param int $allowedLevel
+     * @param int $level
      * @param array $expected
      * @return void
      */
-    public function testSend(array $lines, array $expected): void
+    public function testReceive(string $foo, string $bar, int $allowedLevel, int $level, array $expected): void
     {
-        foreach ($lines as $line) {
-            $this->log->send($line, new FakeLogLevel("fake"));
-        }
-        $this->assertEquals($expected, $this->target->pullData());
+        $target = new FakeLogTarget();
+        $log = new Log(
+            $target,
+            new FakeLogLineFormat(self::SEPARATOR),
+            new FakeLogLevel(self::LEVEL_NAME, $allowedLevel)
+        );
+        $log->receive(new FakeLogLine($foo, $bar), new FakeLogLevel(self::LEVEL_NAME, $level));
+        $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testSendDataProvider(): array
+    public function testReceiveDataProvider(): array
     {
         return [
-            [
-                [
-                    new FakeLogLine("foo", "bar")
-                ],
-                [
-                    "foo|bar"
-                ]
-            ],
-            [
-                [
-                    new FakeLogLine("bar", "bar")
-                ],
-                [
-                    "foo|bar"
-                ]
-            ]
+            /* Level is equal allowed level */
+            ["foo", "bar", 1, 1, [self::LEVEL_NAME . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
+            /* Level is less than allowed level */
+            ["foo", "bar", 2, 1, []],
+            /* Level is greater than allowed level */
+            ["foo", "bar", 1, 2, [self::LEVEL_NAME . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
         ];
     }
 }

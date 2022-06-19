@@ -16,7 +16,7 @@ final class FakeLogLine implements LogLine
     {
         $this->foo = $foo;
         $this->bar = $bar;
-        $this->level = new FakeLogLevel("fakeDefault");
+        $this->level = new FakeLogLevel("fakeDefault", 1);
     }
 
     /**
