@@ -40,11 +40,11 @@ $log->receiveInfo(new MessageLogLine("End script info"));
 
 ## License
 ***
-This software is distributed under the LGPL MIT license.
+This software is distributed under the MIT license.
 
 ## Installation
 ***
-Coming soon...
+- via composer `composer require kikimarik/lognote`
 
 ## Tests
 ***
