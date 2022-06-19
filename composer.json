@@ -14,7 +14,11 @@
     },
     "autoload": {
         "psr-4": {
-            "kikimarik\\lognote\\": "src",
+            "kikimarik\\lognote\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "kikimarik\\lognote\\tests\\": "tests"
         }
     },
