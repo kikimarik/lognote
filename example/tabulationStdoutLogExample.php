@@ -1,13 +1,18 @@
 <?php
 
 use kikimarik\lognote\format\TabulationLogLineFormat;
+use kikimarik\lognote\level\InfoLogLevel;
 use kikimarik\lognote\Log;
 use kikimarik\lognote\MessageLogLine;
 use kikimarik\lognote\target\StdoutLogTarget;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-$log = new Log(new StdoutLogTarget(), new TabulationLogLineFormat(4));
+$log = new Log(
+    new StdoutLogTarget(),
+    new TabulationLogLineFormat(4),
+    new InfoLogLevel()
+);
 
 $messages = [
     "example1",
@@ -16,7 +21,7 @@ $messages = [
 ];
 
 foreach ($messages as $message) {
-    $log->sendInfo(new MessageLogLine($message));
+    $log->receiveInfo(new MessageLogLine($message));
 }
 /**
  * Your console output will be like this:

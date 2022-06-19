@@ -7,39 +7,61 @@ use kikimarik\lognote\core\LogLevel;
 use kikimarik\lognote\core\LogLine;
 use kikimarik\lognote\core\LogLineFormat;
 use kikimarik\lognote\core\LogTarget;
+use kikimarik\lognote\level\DebugLogLevel;
 use kikimarik\lognote\level\ErrorLogLevel;
+use kikimarik\lognote\level\FatalLogLevel;
 use kikimarik\lognote\level\InfoLogLevel;
+use kikimarik\lognote\level\NoticeLogLevel;
 use kikimarik\lognote\level\WarningLogLevel;
 
 final class Log implements LogComponent
 {
     private LogTarget $target;
     private LogLineFormat $format;
+    public LogLevel $allowedLevel;
 
-    public function __construct(LogTarget $target, LogLineFormat $format)
+    public function __construct(LogTarget $target, LogLineFormat $format, LogLevel $allowedLevel)
     {
         $this->target = $target;
         $this->format = $format;
+        $this->allowedLevel = $allowedLevel;
     }
 
-    public function send(LogLine $line, LogLevel $level): void
+    public function receive(LogLine $line, LogLevel $level): void
     {
-        $line->acceptLevel($level);
-        $this->target->write($this->format->handle($line));
+        if ($this->allowedLevel->assertLessThenOrEqual($level)) {
+            $line->acceptLevel($level);
+            $this->target->write($this->format->handle($line));
+        }
     }
 
-    public function sendError(LogLine $line): void
+    public function receiveError(LogLine $line): void
     {
-        $this->send($line, new ErrorLogLevel());
+        $this->receive($line, new ErrorLogLevel());
     }
 
-    public function sendWarning(LogLine $line): void
+    public function receiveWarning(LogLine $line): void
     {
-        $this->send($line, new WarningLogLevel());
+        $this->receive($line, new WarningLogLevel());
     }
 
-    public function sendInfo(LogLine $line): void
+    public function receiveInfo(LogLine $line): void
     {
-        $this->send($line, new InfoLogLevel());
+        $this->receive($line, new InfoLogLevel());
+    }
+
+    public function receiveDebug(LogLine $line): void
+    {
+        $this->receive($line, new DebugLogLevel());
+    }
+
+    public function receiveFatal(LogLine $line): void
+    {
+        $this->receive($line, new FatalLogLevel());
+    }
+
+    public function receiveNotice(LogLine $line): void
+    {
+        $this->receive($line, new NoticeLogLevel());
     }
 }
