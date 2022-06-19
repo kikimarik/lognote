@@ -5,7 +5,9 @@
     "license": "MIT",
     "require": {
         "php": ">=7.4",
-        "ext-json": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
         "codeception/codeception": "4.2.0",
         "codeception/module-phpbrowser": "^1.0.0",
         "codeception/module-asserts": "^1.0.0"
