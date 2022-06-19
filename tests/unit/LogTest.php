@@ -4,7 +4,6 @@ namespace kikimarik\lognote\tests\unit;
 
 use Codeception\Test\Unit;
 use kikimarik\lognote\core\LogLevel;
-use kikimarik\lognote\core\LogLine;
 use kikimarik\lognote\level\DebugLogLevel;
 use kikimarik\lognote\level\ErrorLogLevel;
 use kikimarik\lognote\level\FatalLogLevel;
@@ -15,7 +14,6 @@ use kikimarik\lognote\Log;
 use kikimarik\lognote\tests\unit\format\FakeLogLineFormat;
 use kikimarik\lognote\tests\unit\level\FakeLogLevel;
 use kikimarik\lognote\tests\unit\target\FakeLogTarget;
-use function GuzzleHttp\Promise\all;
 
 final class LogTest extends Unit
 {
