@@ -5,6 +5,12 @@ namespace kikimarik\lognote\tests\unit;
 use Codeception\Test\Unit;
 use kikimarik\lognote\core\LogLevel;
 use kikimarik\lognote\core\LogLine;
+use kikimarik\lognote\level\DebugLogLevel;
+use kikimarik\lognote\level\ErrorLogLevel;
+use kikimarik\lognote\level\FatalLogLevel;
+use kikimarik\lognote\level\InfoLogLevel;
+use kikimarik\lognote\level\NoticeLogLevel;
+use kikimarik\lognote\level\WarningLogLevel;
 use kikimarik\lognote\Log;
 use kikimarik\lognote\tests\unit\format\FakeLogLineFormat;
 use kikimarik\lognote\tests\unit\level\FakeLogLevel;
@@ -46,6 +52,44 @@ final class LogTest extends Unit
             ["foo", "bar", 2, 1, []],
             /* Level is greater than allowed level */
             ["foo", "bar", 1, 2, [self::LEVEL_NAME . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
+        ];
+    }
+
+    /**
+     * @dataProvider testReceiveErrorDataProvider
+     * @param string $foo
+     * @param string $bar
+     * @param LogLevel $allowedLevel
+     * @param array $expected
+     * @return void
+     */
+    public function testReceiveError(string $foo, string $bar, LogLevel $allowedLevel, array $expected): void
+    {
+        $target = new FakeLogTarget();
+        $log = new Log(
+            $target,
+            new FakeLogLineFormat(self::SEPARATOR),
+            $allowedLevel
+        );
+        $log->receiveError(new FakeLogLine($foo, $bar));
+        $this->assertEquals($expected, $target->pullData());
+    }
+
+    public function testReceiveErrorDataProvider(): array
+    {
+        return [
+            /* When allowed debug */
+            ["foo", "bar", new DebugLogLevel(), ["error" . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
+            /* When allowed info */
+            ["foo", "bar", new InfoLogLevel(), ["error" . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
+            /* When allowed notice */
+            ["foo", "bar", new NoticeLogLevel(), ["error" . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
+            /* When allowed warning */
+            ["foo", "bar", new WarningLogLevel(), ["error" . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
+            /* When allowed error */
+            ["foo", "bar", new ErrorLogLevel(), ["error" . self::SEPARATOR . "foo" . self::SEPARATOR . "bar"]],
+            /* When allowed fatal */
+            ["foo", "bar", new FatalLogLevel(), []],
         ];
     }
 }
