@@ -4,6 +4,10 @@ namespace kikimarik\lognote\target;
 
 use FilesystemIterator;
 use kikimarik\lognote\core\LogTarget;
+use kikimarik\lognote\target\file\FileNotAccessibleException;
+use kikimarik\lognote\target\file\FileNotFoundException;
+use kikimarik\lognote\target\file\InvalidFileException;
+use UnexpectedValueException;
 
 final class FileLogTarget implements LogTarget
 {
@@ -22,17 +26,22 @@ final class FileLogTarget implements LogTarget
     {
         $dir = explode("/", trim($this->path));
         $file = array_pop($dir);
-        $fsIt = new FilesystemIterator(implode("/", $dir));
-        if ($fsIt->getPerms() < self::CHECKED_PERMISSIONS) {
-            throw new \RuntimeException("Could not log to the {$this->path} file. Please, check permissions");
+        try {
+            $fsIt = new FilesystemIterator(implode("/", $dir));
+        } catch (UnexpectedValueException $e) {
+            throw new FileNotFoundException($this->path, $e->getCode(), $e);
+        }
+        if (!$fsIt->isWritable()) {
+            throw new FileNotAccessibleException($this->path);
         }
         foreach ($fsIt as $fsItNode) {
-            if (!$fsItNode->isFile()) {
-                continue;
-            }
+            /* @var \SplFileInfo $fsItNode */
             if ($fsItNode->getFilename() === $file) {
+                if ($fsItNode->isDir()) {
+                    throw new InvalidFileException("{$this->path} is a directory.");
+                }
                 if (!$fsItNode->isWritable()) {
-                    throw new \RuntimeException("Could not take writing access to the {$this->path} file.");
+                    throw new FileNotAccessibleException($this->path);
                 }
                 break;
             }
