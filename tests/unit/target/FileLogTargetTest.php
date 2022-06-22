@@ -5,6 +5,7 @@ namespace kikimarik\lognote\tests\unit\target;
 use Codeception\Test\Unit;
 use kikimarik\lognote\target\file\FileNotAccessibleException;
 use kikimarik\lognote\target\file\FileNotFoundException;
+use kikimarik\lognote\target\file\InvalidFileException;
 use kikimarik\lognote\target\FileLogTarget;
 
 final class FileLogTargetTest extends Unit
@@ -24,7 +25,9 @@ final class FileLogTargetTest extends Unit
 
     public static function tearDownAfterClass(): void
     {
-        unlink(self::LOG_FILE);
+        if (file_exists(self::LOG_FILE)) {
+            unlink(self::LOG_FILE);
+        }
         rmdir(__DIR__ . "/../../resources/target/file/775");
         chmod(__DIR__ . "/../../resources/target/file/555", 0755);
         rmdir(__DIR__ . "/../../resources/target/file/555");
@@ -96,6 +99,11 @@ final class FileLogTargetTest extends Unit
                 self::NOT_ACCESSIBLE_LOG_FILE,
                 FileNotAccessibleException::class,
                 self::NOT_ACCESSIBLE_LOG_FILE . " is not accessible. Please check permissions."
+            ],
+            [
+                __DIR__ . "/../../resources/target/file/775",
+                InvalidFileException::class,
+                __DIR__ . "/../../resources/target/file/775 is a directory."
             ],
         ];
     }
