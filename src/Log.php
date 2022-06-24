@@ -18,7 +18,7 @@ final class Log implements LogComponent
 {
     private LogTarget $target;
     private LogLineFormat $format;
-    public LogLevel $allowedLevel;
+    private LogLevel $allowedLevel;
 
     public function __construct(LogTarget $target, LogLineFormat $format, LogLevel $allowedLevel)
     {

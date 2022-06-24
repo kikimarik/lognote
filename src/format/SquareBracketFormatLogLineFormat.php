@@ -25,6 +25,6 @@ final class SquareBracketFormatLogLineFormat implements LogLineFormat
             $body .= "$field{$this->separator}$value";
             $body .= "] ";
         }
-        return $body;
+        return rtrim($body);
     }
 }
