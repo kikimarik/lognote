@@ -9,6 +9,6 @@ final class StdoutLogTarget implements LogTarget
 
     public function write(string $lineBody): void
     {
-        fwrite(\STDOUT, $lineBody . PHP_EOL);
+        echo ($lineBody . PHP_EOL);
     }
 }

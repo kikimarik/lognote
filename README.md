@@ -48,4 +48,8 @@ This software is distributed under the MIT license.
 
 ## Tests
 ***
-Coming soon...
+[Lognote tests](https://github.com/kikimarik/lognote/tree/master/tests) use the [Codeception 4.2.0](https://github.com/Codeception/Codeception/tree/4.2.0) framework.
+All unit tests must be passed.
+
+For tests running you can run the command:
+`./vendor/bin/codecept run`
