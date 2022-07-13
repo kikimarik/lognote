@@ -4,7 +4,7 @@
     "description": "Composer package for logs",
     "license": "MIT",
     "require": {
-        "php": ">=7.4",
+        "php": ">=7.1",
         "ext-json": "*"
     },
     "require-dev": {

@@ -10,7 +10,7 @@ use kikimarik\lognote\tests\unit\level\FakeLogLevel;
 final class TabulationLogLineFormatTest extends Unit
 {
     /**
-     * @dataProvider testHandleDataProvider
+     * @dataProvider handleDataProvider
      * @param string $foo
      * @param string $bar
      * @param int $spaceSize
@@ -25,7 +25,7 @@ final class TabulationLogLineFormatTest extends Unit
         $this->assertEquals($expected, $result);
     }
 
-    public function testHandleDataProvider(): array
+    public function handleDataProvider(): array
     {
         return [
             ["foo", "bar", 1, "fake foo bar"],

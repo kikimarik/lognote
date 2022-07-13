@@ -21,7 +21,7 @@ final class LogTest extends Unit
     private const SEPARATOR = "|";
 
     /**
-     * @dataProvider testReceiveDataProvider
+     * @dataProvider receiveDataProvider
      * @param string $foo
      * @param string $bar
      * @param int $allowedLevel
@@ -41,7 +41,7 @@ final class LogTest extends Unit
         $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testReceiveDataProvider(): array
+    public function receiveDataProvider(): array
     {
         return [
             /* Level is equal allowed level */
@@ -54,7 +54,7 @@ final class LogTest extends Unit
     }
 
     /**
-     * @dataProvider testReceiveFatalDataProvider
+     * @dataProvider receiveFatalDataProvider
      * @param string $foo
      * @param string $bar
      * @param LogLevel $allowedLevel
@@ -73,7 +73,7 @@ final class LogTest extends Unit
         $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testReceiveFatalDataProvider(): array
+    public function receiveFatalDataProvider(): array
     {
         return [
             /* When allowed debug */
@@ -92,7 +92,7 @@ final class LogTest extends Unit
     }
 
     /**
-     * @dataProvider testReceiveErrorDataProvider
+     * @dataProvider receiveErrorDataProvider
      * @param string $foo
      * @param string $bar
      * @param LogLevel $allowedLevel
@@ -111,7 +111,7 @@ final class LogTest extends Unit
         $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testReceiveErrorDataProvider(): array
+    public function receiveErrorDataProvider(): array
     {
         return [
             /* When allowed debug */
@@ -130,7 +130,7 @@ final class LogTest extends Unit
     }
 
     /**
-     * @dataProvider testReceiveWarningDataProvider
+     * @dataProvider receiveWarningDataProvider
      * @param string $foo
      * @param string $bar
      * @param LogLevel $allowedLevel
@@ -149,7 +149,7 @@ final class LogTest extends Unit
         $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testReceiveWarningDataProvider(): array
+    public function receiveWarningDataProvider(): array
     {
         return [
             /* When allowed debug */
@@ -168,7 +168,7 @@ final class LogTest extends Unit
     }
 
     /**
-     * @dataProvider testReceiveNoticeDataProvider
+     * @dataProvider receiveNoticeDataProvider
      * @param string $foo
      * @param string $bar
      * @param LogLevel $allowedLevel
@@ -187,7 +187,7 @@ final class LogTest extends Unit
         $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testReceiveNoticeDataProvider(): array
+    public function receiveNoticeDataProvider(): array
     {
         return [
             /* When allowed debug */
@@ -206,7 +206,7 @@ final class LogTest extends Unit
     }
 
     /**
-     * @dataProvider testReceiveInfoDataProvider
+     * @dataProvider receiveInfoDataProvider
      * @param string $foo
      * @param string $bar
      * @param LogLevel $allowedLevel
@@ -225,7 +225,7 @@ final class LogTest extends Unit
         $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testReceiveInfoDataProvider(): array
+    public function receiveInfoDataProvider(): array
     {
         return [
             /* When allowed debug */
@@ -244,7 +244,7 @@ final class LogTest extends Unit
     }
 
     /**
-     * @dataProvider testReceiveDebugDataProvider
+     * @dataProvider receiveDebugDataProvider
      * @param string $foo
      * @param string $bar
      * @param LogLevel $allowedLevel
@@ -263,7 +263,7 @@ final class LogTest extends Unit
         $this->assertEquals($expected, $target->pullData());
     }
 
-    public function testReceiveDebugDataProvider(): array
+    public function receiveDebugDataProvider(): array
     {
         return [
             /* When allowed debug */

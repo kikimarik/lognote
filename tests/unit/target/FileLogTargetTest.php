@@ -34,7 +34,7 @@ final class FileLogTargetTest extends Unit
     }
 
     /**
-     * @dataProvider testWriteDataProvider
+     * @dataProvider writeDataProvider
      * @param string $input
      * @param string $path
      * @param bool $rewriteMode
@@ -48,7 +48,7 @@ final class FileLogTargetTest extends Unit
         $this->assertEquals($expected, file_get_contents($path));
     }
 
-    public function testWriteDataProvider(): array
+    public function writeDataProvider(): array
     {
         return [
             [
@@ -73,7 +73,7 @@ final class FileLogTargetTest extends Unit
     }
 
     /**
-     * @dataProvider testWriteNegativeDataProvider
+     * @dataProvider writeNegativeDataProvider
      * @param string $path
      * @param string $exception
      * @param string $message
@@ -87,7 +87,7 @@ final class FileLogTargetTest extends Unit
             ->write("something...");
     }
 
-    public function testWriteNegativeDataProvider(): array
+    public function writeNegativeDataProvider(): array
     {
         return [
             [

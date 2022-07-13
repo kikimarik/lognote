@@ -10,7 +10,7 @@ use kikimarik\lognote\tests\unit\level\FakeLogLevel;
 final class JsonLogLineFormatTest extends Unit
 {
     /**
-     * @dataProvider testHandleDataProvider
+     * @dataProvider handleDataProvider
      * @param string $foo
      * @param string $bar
      * @param array $expected
@@ -24,7 +24,7 @@ final class JsonLogLineFormatTest extends Unit
         $this->assertEquals($expected, json_decode($result, true));
     }
 
-    public function testHandleDataProvider(): array
+    public function handleDataProvider(): array
     {
         return [
             ["foo", "bar", ["level" => "fake", "foo" => "foo", "bar" => "bar"]],

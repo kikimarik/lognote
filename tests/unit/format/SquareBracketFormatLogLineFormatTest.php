@@ -10,7 +10,7 @@ use kikimarik\lognote\tests\unit\level\FakeLogLevel;
 final class SquareBracketFormatLogLineFormatTest extends Unit
 {
     /**
-     * @dataProvider testHandleDataProvider
+     * @dataProvider handleDataProvider
      * @param string $foo
      * @param string $bar
      * @param string $separator
@@ -25,7 +25,7 @@ final class SquareBracketFormatLogLineFormatTest extends Unit
         $this->assertEquals($expected, $result);
     }
 
-    public function testHandleDataProvider(): array
+    public function handleDataProvider(): array
     {
         return [
             ["foo", "bar", ":", "[level:fake] [foo:foo] [bar:bar]"],
