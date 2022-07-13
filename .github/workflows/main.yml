@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout Action
       uses: actions/checkout@v3
 
     - name: Validate composer.json and composer.lock
@@ -34,4 +34,4 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Codeception Action
-      uses: joelwmale/codeception-action@1.0.0
+      run: vendor/bin/codecept run
